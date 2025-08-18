@@ -81,5 +81,21 @@ if(JWT_ENABLE_COVERAGE)
   setup_coverage(jwt-cpp-test)
   set(COVERAGE_EXCLUDES "/usr/**" "/home/*/.conan/**" "*test*" "*build*" "**/nlohmann/json.hpp"
                         "**/picojson/picojson.h" "*boost*" "*jsoncons*")
-  setup_target_for_coverage_lcov(NAME coverage EXECUTABLE ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test)
+
+ # --- LCOV target with ignore flags ---
+  setup_target_for_coverage_lcov(
+      NAME coverage
+      EXECUTABLE ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
+      EXCLUDE ${COVERAGE_EXCLUDES}
+      LCOV_ARGS --ignore-errors inconsistent --ignore-errors mismatch
+  )
+
+  # --- GCOVR target ---
+  add_custom_target(coverage_gcovr
+      COMMAND ${CMAKE_COMMAND} -E echo "Running gcovr coverage..."
+      COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=$ENV{PYTHONPATH} gcovr -r ${CMAKE_SOURCE_DIR} --html --html-details -o ${CMAKE_BINARY_DIR}/coverage.html --xml -o ${CMAKE_BINARY_DIR}/coverage.xml
+      DEPENDS jwt-cpp-test
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      COMMENT "Generate coverage report with gcovr"
+  )
 endif()
