@@ -2,9 +2,9 @@ name: JWT CI
 
 on:
   push:
-    branches: [master]
+    branches: [master, fix/CI_CD]
   pull_request:
-    branches: [master]
+    branches: [master, fix/CI_CD]
 
 jobs:
   coverage:
@@ -31,19 +31,19 @@ jobs:
   fuzzing:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: lukka/get-cmake@latest
-      
-    - name: configure
-      run: cmake --preset ci-fuzzing
-    - name: build
-      run: cmake --build --preset ci-fuzzing
-        
-    - name: run
-      run: |
-        cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-BaseEncodeFuzz-run
-        cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-BaseDecodeFuzz-run
-        cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-TokenDecodeFuzz-run
+      - uses: actions/checkout@v4
+      - uses: lukka/get-cmake@latest
+
+      - name: configure
+        run: cmake --preset ci-fuzzing
+      - name: build
+        run: cmake --build --preset ci-fuzzing
+
+      - name: run
+        run: |
+          cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-BaseEncodeFuzz-run
+          cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-BaseDecodeFuzz-run
+          cmake --build --preset ci-fuzzing --target jwt-cpp-fuzz-TokenDecodeFuzz-run
 
   asan:
     runs-on: ubuntu-latest
