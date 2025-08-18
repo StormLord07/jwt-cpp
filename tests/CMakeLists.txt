@@ -83,12 +83,12 @@ if(JWT_ENABLE_COVERAGE)
                         "**/picojson/picojson.h" "*boost*" "*jsoncons*")
 
  # --- LCOV target with ignore flags ---
-  setup_target_for_coverage_lcov(
-      NAME coverage
-      EXECUTABLE ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
-      EXCLUDE ${COVERAGE_EXCLUDES}
-      LCOV_ARGS --ignore-errors inconsistent,mismatch,unused,count
-  )
+ # setup_target_for_coverage_lcov(
+ #     NAME coverage
+ #     EXECUTABLE ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
+ #     EXCLUDE ${COVERAGE_EXCLUDES}
+ #     LCOV_ARGS --ignore-errors inconsistent,mismatch,unused,count
+ # )
 
   # --- GCOVR target ---
   add_custom_target(coverage_gcovr
