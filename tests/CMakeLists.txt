@@ -91,7 +91,7 @@ if(JWT_ENABLE_COVERAGE)
  # )
 
   # --- GCOVR target ---
-  add_custom_target(coverageg
+  add_custom_target(coverage
     COMMAND ${CMAKE_COMMAND} -E echo "Running gcovr coverage..."
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
     COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=$ENV{PYTHONPATH} gcovr 
