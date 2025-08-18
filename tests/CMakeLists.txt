@@ -87,7 +87,7 @@ if(JWT_ENABLE_COVERAGE)
       NAME coverage
       EXECUTABLE ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
       EXCLUDE ${COVERAGE_EXCLUDES}
-      LCOV_ARGS --ignore-errors inconsistent --ignore-errors mismatch
+      LCOV_ARGS --ignore-errors inconsistent,mismatch,unused,count
   )
 
   # --- GCOVR target ---
