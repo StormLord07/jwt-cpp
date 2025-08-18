@@ -2,9 +2,9 @@ name: JWT CI
 
 on:
   push:
-    branches: [master, fix/CI_CD]
+    branches: [master]
   pull_request:
-    branches: [master, fix/CI_CD]
+    branches: [master]
 
 jobs:
   coverage:
