@@ -6,6 +6,7 @@ runs:
     - run: sudo apt-get install libgtest-dev # lcov
       shell: bash
     - run: |
+        sudo apt-get install -y libcapture-tiny-perl
         git clone https://github.com/linux-test-project/lcov.git
         cd lcov
         sudo make install
