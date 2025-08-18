@@ -96,9 +96,9 @@ if(JWT_ENABLE_COVERAGE)
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/jwt-cpp-test
     COMMAND ${CMAKE_COMMAND} -E env PYTHONPATH=$ENV{PYTHONPATH} gcovr 
             -r ${CMAKE_SOURCE_DIR} 
-            --html --html-details -o ${CMAKE_BINARY_DIR}/coverage.html
-            --xml -o ${CMAKE_BINARY_DIR}/coverage.xml
-            --lcov -o ${CMAKE_BINARY_DIR}/coverage.info
+            --html=${CMAKE_BINARY_DIR}/coverage.html
+            --xml=${CMAKE_BINARY_DIR}/coverage.xml
+            --lcov=${CMAKE_BINARY_DIR}/coverage.info
             --exclude '.*test.*'
             --exclude '.*build.*'
             --exclude '.*nlohmann/json.hpp'
